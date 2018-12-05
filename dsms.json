@@ -1,0 +1,43 @@
+{
+  "hosts": {
+    "localhost": {
+      "host": "localhost"
+    },
+    "Jupiter": {
+      "host": "10.155.20.245",
+      "endpoints": [
+        "memory",
+        "diskspace",
+        "processes",
+        "listening"
+      ],
+      "config": {
+        "processes": [
+          "freeradius",
+          "smbd",
+          "snapd",
+          "cupsd"
+        ],
+        "listening": [
+          {
+            "name": "papercut",
+            "port": 9191
+          },
+          {
+            "name": "freeradius",
+            "port": 1812,
+            "udp": true
+          },
+          {
+            "name": "samba",
+            "port": 445
+          },
+          {
+            "name": "cups",
+            "port": 631
+          }
+        ]
+      }
+    }
+  }
+}

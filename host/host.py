@@ -11,7 +11,11 @@ class Host:
     endpoints = []
     config = {}
 
-    def __init__(self, name, host, endpoints=[], config={}):
+    def __init__(self, name, host, endpoints=None, config=None):
+        if endpoints is None:
+            endpoints = []
+        if config is None:
+            config = {}
         self.name = name
         self.host = host
         self.endpoints = endpoints
@@ -26,8 +30,9 @@ class Host:
 
     def print(self):
         up = self.ping()
-        print("{} {}".format(emojize(colored(":thumbs_up: UP", 'green') if up else colored(":thumbs_down: DOWN", 'red')),
-                             self.name))
+        print("{} {}".format(
+            emojize(colored(":thumbs_up: UP", 'green') if up else colored(":thumbs_down: DOWN", 'red')),
+            self.name))
         print(" Endpoints:")
         for endpoint in self.endpoints:
             print("    {}".format(endpoint))

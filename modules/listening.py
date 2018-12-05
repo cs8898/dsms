@@ -5,6 +5,7 @@ import re
 TCP = 'netstat -an | grep -i "LISTEN "'
 UDP = 'netstat -an | grep -i udp'
 
+
 def handle(config):
     conf = json.loads(config)
     tcp_ports = os.popen(TCP).read().split("\n")

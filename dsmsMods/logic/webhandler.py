@@ -3,7 +3,7 @@ from dsmsMods.config import config
 from platform import node
 from dsmsMods import modules
 from dsmsMods.modules import *
-from urllib.parse import urlparse, unquote
+from urllib.parse import urlparse, unquote, parse_qs
 import json
 
 
@@ -17,7 +17,9 @@ class Webhandler(BaseHTTPRequestHandler):
             url = urlparse(self.path)
             json_obj = {}
             if len(url.query) > 0:
-                json_obj = json.loads(unquote(url.query))
+                qs = parse_qs(url.query)
+                if 'q' in qs and len(qs['q']) == 1:
+                    json_obj = json.loads(qs['q'][0])
             if url.path[1:] == module:
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/json; charset=utf-8')

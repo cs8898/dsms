@@ -29,8 +29,8 @@ class Host:
                 self.host,
                 self.conf.get('port', config.DSMS_PORT),
                 endpoint,
-                "" if len(conf) == 0 else '?' + conf
-            ))
+                "" if len(conf) == 0 else '?q=' + conf
+            ), timeout=(.5, 100))
             if r.status_code == 200:
                 return json.loads(r.content.decode('UTF-8'))
             else:
@@ -64,7 +64,9 @@ class Host:
 
 
 def host_from_dict(host_dict):
-    return Host(host_dict.get('name', host_dict['host']),
-                host_dict['host'],
-                host_dict.get('endpoints', []),
-                host_dict.get('config', {}))
+    if 'host' in host_dict:
+        return Host(host_dict.get('name', host_dict['host']),
+                    host_dict['host'],
+                    host_dict.get('endpoints', []),
+                    host_dict.get('config', {}))
+    return None

@@ -58,5 +58,5 @@ TODO
     - [ ] md Softraid Endpoint
     
 * Server
-    - [ ] fix query arg
-    - [ ] harden
+    - [x] fix query arg (useing q as query arg)
+    - [ ] harden (hardened host creation, by returning None)

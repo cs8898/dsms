@@ -1,7 +1,7 @@
 from http.server import HTTPServer
 from socketserver import ThreadingMixIn
 
-from config import config
+from dsmsMods.config import config
 from .webhandler import Webhandler
 from termcolor import colored
 from emoji import emojize

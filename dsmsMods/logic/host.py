@@ -1,6 +1,6 @@
 import requests
 from requests import RequestException
-from config import config
+from dsmsMods.config import config
 from emoji import emojize
 from termcolor import colored
 import json

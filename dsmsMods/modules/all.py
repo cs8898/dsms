@@ -1,4 +1,4 @@
-from config import config
+from dsmsMods.config import config
 
 
 def handle(json_conf):

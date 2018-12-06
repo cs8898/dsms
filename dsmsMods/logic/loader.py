@@ -1,4 +1,4 @@
-from config import config
+from dsmsMods.config import config
 from . import host
 from emoji import emojize
 import json

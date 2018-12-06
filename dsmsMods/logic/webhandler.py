@@ -1,8 +1,8 @@
 from http.server import BaseHTTPRequestHandler
-from config import config
+from dsmsMods.config import config
 from platform import node
-import modules
-from modules import *
+from dsmsMods import modules
+from dsmsMods.modules import *
 from urllib.parse import urlparse, unquote
 import json
 

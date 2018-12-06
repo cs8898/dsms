@@ -1,0 +1,50 @@
+{
+  "hosts": [
+    {
+      "host": "localhost",
+      "endpoints": [
+        "processes",
+        "listening"
+      ],
+      "config": {
+        "processes": [
+          "zsh"
+        ],
+        "listening": {
+          "tcp": [8080]
+        },
+        "ping": {
+          "pong":"myPongResponse"
+        }
+      }
+    },
+    {
+      "name": "someHost",
+      "host": "192.168.2.123",
+      "endpoints": [
+        "memory",
+        "diskspace",
+        "processes",
+        "listening"
+      ],
+      "config": {
+        "processes": [
+          "freeradius",
+          "smbd",
+          "slapd",
+          "cupsd"
+        ],
+        "listening": {
+          "tcp": [
+            9191,
+            445,
+            631
+          ],
+          "udp": [
+            1812
+          ]
+        }
+      }
+    }
+  ]
+}

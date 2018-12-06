@@ -11,7 +11,7 @@ def handle(json_conf):
         testhost = dsmsMods.logic.host.host_from_dict(conf)
     else:
         for host in config.HOSTS:
-            if host.name == 'localhost':
+            if host.host == 'localhost' or host.host == '127.0.0.1':
                 testhost = host
                 break
     if testhost is None:

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 from termcolor import colored, cprint
 from config import config
 from logic import *

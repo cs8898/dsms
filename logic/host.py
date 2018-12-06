@@ -32,7 +32,7 @@ class Host:
                 "" if len(conf) == 0 else '?' + conf
             ))
             if r.status_code == 200:
-                return json.loads(r.content)
+                return json.loads(r.content.decode('UTF-8'))
             else:
                 return {'ok': False, 'code': r.status_code}
         except RequestException:

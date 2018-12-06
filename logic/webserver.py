@@ -1,4 +1,5 @@
-from http.server import ThreadingHTTPServer
+from http.server import HTTPServer
+from socketserver import ThreadingMixIn
 
 from config import config
 from .webhandler import Webhandler
@@ -7,11 +8,15 @@ from emoji import emojize
 import threading
 
 
+class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+    """Handle requests in a separate thread."""
+
+
 class Webserver(threading.Thread):
     server = None
 
     def run(self):
-        self.server = ThreadingHTTPServer(('', config.DSMS_PORT), Webhandler)
+        self.server = ThreadedHTTPServer(('', config.DSMS_PORT), Webhandler)
         print(emojize(":rocket: starting webserver on {}".format(
             colored("http://{}:{}".format(self.server.server_address[0], self.server.server_port), 'blue')
         )))

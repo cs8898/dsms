@@ -17,7 +17,7 @@ class Webhandler(BaseHTTPRequestHandler):
             url = urlparse(self.path)
             json_obj = {}
             if len(url.query) > 0:
-                json_obj = json.loads(unquote(url.query).encode('UTF-8'))
+                json_obj = json.loads(unquote(url.query))
             if url.path[1:] == module:
                 self.send_response(200)
                 self.send_header('Content-Type', 'application/json; charset=utf-8')

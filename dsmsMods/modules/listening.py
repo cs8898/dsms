@@ -19,11 +19,11 @@ def handle(config):
     tcp_ports = os.popen(TCP_CMD).read().split("\n")
     tcp_ports = list(map(lambda x: re.split(" +", x), tcp_ports))
     tcp_ports = list(filter(lambda x: len(x) >= 4, tcp_ports))
-    tcp_ports = list(map(lambda x: int(x[3].split(":")[1]), tcp_ports))
+    tcp_ports = list(map(lambda x: int(re.split(":+", x[3])[1]), tcp_ports))
     udp_ports = os.popen(UDP_CMD).read().split("\n")
     udp_ports = list(map(lambda x: re.split(" +", x), udp_ports))
     udp_ports = list(filter(lambda x: len(x) >= 4, udp_ports))
-    udp_ports = list(map(lambda x: int(x[3].split(":")[1]), udp_ports))
+    udp_ports = list(map(lambda x: int(re.split(":+", x[3])[1]), udp_ports))
 
     tcp_ok = []
     for tcp_port in tcp_ports:

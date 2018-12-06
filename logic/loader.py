@@ -1,19 +1,31 @@
-from config import *
-from host.host import Host
+from config import config
+from . import host
 from emoji import emojize
 import json
+from os.path import isfile
 
 
-def load():
+def load_hosts():
     hosts = []
-    config = json.load(open(DSMS_FILE))
-    print(emojize(":card_index: loading hosts"))
-    for entry in config['hosts']:
-        hosts.append(Host(entry, config['hosts'][entry]['host'],
-                          config['hosts'][entry].get('endpoints', []), config['hosts'][entry].get('config', {})))
-        # print("    {}: {}".format(
-        #     hosts[len(hosts)-1].name,
-        #     emojize(":thumbs_up: UP" if hosts[len(hosts)-1].ping() else ":thumbs_down: DOWN"))
-        # )
-        hosts[len(hosts)-1].print()
+    conf = {}
+    if isfile(config.DSMS_FILE):
+        conf = json.load(open(config.DSMS_FILE))
+    if "hosts" in conf:
+        print(emojize(":card_index: loading hosts"))
+        for entry in conf['hosts']:
+            hosts.append(
+                host.host_from_dict(entry)
+            )
+            hosts[len(hosts) - 1].print()
     return hosts
+
+
+def load_config():
+    conf = {}
+    if isfile(config.DSMS_FILE):
+        conf = json.load(open(config.DSMS_FILE))
+    if "config" in conf:
+        print(emojize(":card_index: loading config"))
+        for entry in conf['config']:
+            if "port" == entry:
+                config.DSMS_PORT = conf['config']['port']

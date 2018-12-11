@@ -11,7 +11,6 @@ def handle(json_conf):
     if testhost is None:
         for host in config.HOSTS:
             if host.host == 'localhost' or host.host == '127.0.0.1':
-                print("Found LocalHOST")
                 testhost = host
                 break
     if testhost is None:

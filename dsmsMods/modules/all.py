@@ -7,7 +7,6 @@ def hash(ret):
     for key in temp:
         if key is 'hash' or key is 'endpoint' or key is 'ok':
             continue
-        print(key)
         ret['hash'] = ret['hash'] << 1
         ret['hash'] += int(temp[key]['ok'])
         temp[key] = dict(sorted(temp[key].items(), key=lambda x: x[0]))

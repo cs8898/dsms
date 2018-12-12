@@ -13,7 +13,6 @@ def hash(ret):
         for subkey in temp[key]:
             if subkey is 'endpoint' or subkey is 'ok':
                 continue
-            print("    {}".format(subkey))
             ret['hash'] = ret['hash'] << 1
             ret['hash'] += int(temp[key][subkey]['ok'])
     return ret

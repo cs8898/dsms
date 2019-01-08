@@ -17,11 +17,11 @@ def ping(host):
     command = ['ping', param, '1', host]
 
     # /dev/null to hide output
-    FNULL = open(os.devnull, 'w')
+    fnull = open(os.devnull, 'w')
 
     # Pinging
-    r = system_call(command, stdout=FNULL, stderr=FNULL)
-    FNULL.close()
+    r = system_call(command, stdout=fnull, stderr=fnull)
+    fnull.close()
     return r == 0
 
 

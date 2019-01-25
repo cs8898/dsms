@@ -7,7 +7,8 @@ import argparse
 import time
 import signal
 from dsmsMods import modules
-
+import os
+import sys
 
 def init(args=None):
     cprint(config.DSMS_TEXT, 'green')
@@ -30,5 +31,13 @@ parser.add_argument("-c", help="Config File [{}]".format(config.DSMS_FILE), defa
                     metavar="config")
 parser.add_argument("-p", help="Listen Port [{}]".format(config.DSMS_PORT), default=-1, type=int,
                     metavar="port")
+parser.add_argument('-d', help="Start Daemonized", action='store_true')
 my_args = parser.parse_args()
+
+if my_args.d:
+    if os.fork():
+        sys.exit()
+    if not os.path.exists('/var/log/dsms/'):
+        os.makedirs('/var/log/dsms/')
+    sys.stdout = open('/var/log/dsms/dsms.log','w')
 init(my_args)

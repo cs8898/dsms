@@ -1,0 +1,10 @@
+[Unit]
+Description=Dead Simple Monitoring Solution
+Requires=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/dsms
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,24 @@
+#!/lib/init/init-d-script
+### BEGIN INIT INFO
+# Provides:          dsms
+# Required-Start:    $remote_fs $syslog $network
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Dead Simple Monitoring Solution Service
+# Description:       Start script for the DSMS Service
+### END INIT INFO
+
+# Author: Christian Schmied<cs8898@gmx.de>
+
+DESC="Dead Simple Monitoring Solution"
+NAME=dsms
+DAEMON=/usr/local/bin/$NAME
+DAEMON_ARGS="-d"
+PIDFILE=/var/run/$NAME.pid
+SCRIPTNAME=/etc/init.d/$NAME
+
+do_stop_override(){
+	pkill $NAME
+}
+

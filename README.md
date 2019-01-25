@@ -55,7 +55,8 @@ def handle(config):
 TODO
 ----
 * Endpoints
-    - [ ] md Softraid Endpoint
+    - [ ] md Softraid Endpoint Replaced By arcconf
+    - [x] arcconf Raid
     
 * Server
     - [x] fix query arg (useing q as query arg)

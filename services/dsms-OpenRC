@@ -1,0 +1,11 @@
+#!/sbin/openrc-run
+name=$RC_SVCNAME
+command="/usr/bin/dsms"
+#command_args="-d"
+pidfile="/run/$RC_SVCNAME.pid"
+command_background="yes"
+stopsig="SIGTERM"
+depend() {
+	need net
+}
+}

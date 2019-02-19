@@ -38,9 +38,9 @@ class Host:
             if r.status_code == 200:
                 return json.loads(r.content.decode('UTF-8'))
             else:
-                return {'ok': False, 'code': r.status_code}
+                return {'ok': False, 'code': r.status_code, 'endpoint': endpoint}
         except RequestException:
-            return {'ok': False}
+            return {'ok': False, 'endpoint': endpoint}
 
     def do_endpoints(self):
         endpoints = self.endpoints.copy()

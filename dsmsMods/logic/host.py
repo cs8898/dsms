@@ -4,6 +4,9 @@ from dsmsMods.config import config
 from emoji import emojize
 from termcolor import colored
 import json
+import urllib3
+
+urllib3.disable_warnings()
 
 
 class Host:
@@ -25,12 +28,13 @@ class Host:
     def do_endpoint(self, endpoint="ping"):
         try:
             conf = json.dumps(self.conf.get(endpoint, ""))
-            r = requests.get("http://{}:{}/{}{}".format(
+            r = requests.get("{}://{}:{}/{}{}".format(
+                'http' if (config.DSMS_PEM == '') else 'https',
                 self.host,
                 self.conf.get('port', config.DSMS_PORT),
                 endpoint,
                 "" if len(conf) == 0 else '?q=' + conf
-            ), timeout=(.5, 100))
+            ), timeout=(.5, 100), verify=False)
             if r.status_code == 200:
                 return json.loads(r.content.decode('UTF-8'))
             else:

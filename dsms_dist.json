@@ -1,4 +1,7 @@
 {
+  "config": {
+    "pem": "./dsms.pem"
+  },
   "hosts": [
     {
       "host": "localhost",
@@ -11,10 +14,12 @@
           "zsh"
         ],
         "listening": {
-          "tcp": [8080]
+          "tcp": [
+            8080
+          ]
         },
         "ping": {
-          "pong":"myPongResponse"
+          "pong": "myPongResponse"
         }
       }
     },

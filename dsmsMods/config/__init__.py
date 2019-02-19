@@ -3,6 +3,7 @@ class Config:
     DSMS_VERSION = '0.0.1'
     DSMS_DEVELOPER = 'cs8898'
     DSMS_FILE = '/etc/dsms/dsms.json'
+    DSMS_PEM = ''
     DSMS_TEXT = "________    _________   _____    _________\n" \
                 "\\______ \\  /   _____/  /     \\  /   _____/\n" + \
                 " |    |  \\ \\_____  \\  /  \\ /  \\ \\_____  \\\n" + \

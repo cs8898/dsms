@@ -59,5 +59,5 @@ TODO
     - [x] arcconf Raid
     
 * Server
-    - [x] fix query arg (useing q as query arg)
+    - [x] fix query arg (using q as query arg)
     - [ ] harden (hardened host creation, by returning None)

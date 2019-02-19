@@ -29,3 +29,5 @@ def load_config():
         for entry in conf['config']:
             if "port" == entry:
                 config.DSMS_PORT = conf['config']['port']
+            if "pem" == entry:
+                config.DSMS_PEM = conf['config']['pem']

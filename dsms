@@ -10,6 +10,7 @@ from dsmsMods import modules
 import os
 import sys
 
+
 def init(args=None):
     cprint(config.DSMS_TEXT, 'green')
     print('Version: {} by {}'.format(colored(config.DSMS_VERSION, 'green'), colored(config.DSMS_DEVELOPER, 'red')))

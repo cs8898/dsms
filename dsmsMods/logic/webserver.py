@@ -6,10 +6,16 @@ from .webhandler import Webhandler
 from termcolor import colored
 from emoji import emojize
 import threading
+import ssl
 
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
     """Handle requests in a separate thread."""
+
+    def __init__(self, port, handler):
+        super().__init__(port, handler)
+        if config.DSMS_PEM != '':
+            self.socket = ssl.wrap_socket(self.socket, certfile=config.DSMS_PEM, server_side=True)
 
 
 class Webserver(threading.Thread):
@@ -18,11 +24,13 @@ class Webserver(threading.Thread):
     def run(self):
         self.server = ThreadedHTTPServer(('', config.DSMS_PORT), Webhandler)
         print(emojize(":rocket: starting webserver on {}".format(
-            colored("http://{}:{}".format(self.server.server_address[0], self.server.server_port), 'blue')
+            colored("{}://{}:{}".format('http' if config.DSMS_PEM == '' else 'https',
+                                        self.server.server_address[0],
+                                        self.server.server_port), 'blue')
         )))
         self.server.serve_forever()
 
-    def stop(self, signum = None, frame = None):
+    def stop(self, signum=None, frame=None):
         print(colored(emojize("\n:stop_sign: stopping webserver"), 'red'))
         self.server.shutdown()
 

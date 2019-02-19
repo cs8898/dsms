@@ -6,7 +6,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 setup(
     name='dsms',
-    version='0.0.1',
+    version='0.0.2',
     packages=find_packages(),
     install_requires=['emoji>=0.5.1', 'termcolor>=1.1.0', 'requests>=2.20.1'],
     url='https://github.com/cs8898/dsmsMods',
